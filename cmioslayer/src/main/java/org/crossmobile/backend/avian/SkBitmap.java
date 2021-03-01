@@ -9,7 +9,10 @@ package org.crossmobile.backend.avian;
 import crossmobile.ios.uikit.UIImageOrientation;
 import org.crossmobile.bind.graphics.NativeBitmap;
 
-public class SkBitmap extends NativeElement implements NativeBitmap {
+import java.io.*;
+import java.lang.reflect.*;
+
+public class SkBitmap extends NativeElement implements NativeBitmap {   
     SkBitmap(String path) {
         super(init(path));
     }
@@ -29,7 +32,22 @@ public class SkBitmap extends NativeElement implements NativeBitmap {
         return UIImageOrientation.Up;
     }
 
-    private static native long init(String path);
+    private static long init(String path) {
+        try {
+            InputStream inputStream = SkBitmap.class.getClass().getClassLoader().getResourceAsStream(path);
+            Field field  = inputStream.getClass().getField("peer");
+            field.setAccessible(true);
+            Long peer = (Long)field.get(inputStream);
+            return initFromBlob(peer);
+        } catch (NoSuchFieldException e) {
+            return initFromFileName(path);
+        } catch (IllegalAccessException e) {
+            return initFromFileName(path);
+        }
+    }
+
+    private static native long initFromFileName(String path);
+    private static native long initFromBlob(long blobPeer);
 
     protected native void destroy(long peer);
 }

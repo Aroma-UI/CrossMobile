@@ -156,6 +156,8 @@
                             <os>linux</os>
                             <arch>x86_64</arch>
                             <ccflags>
+                                <ccflag>-I${user.home}/Sources/Aroma/third_party/avian/src</ccflag>
+                                <ccflag>-I${user.home}/Sources/Aroma/third_party/avian/include</ccflag>
                                 <ccflag>-I${user.home}/Sources/Aroma/third_party/SDL/include</ccflag>
                                 <ccflag>-I${user.home}/Sources/Aroma/third_party/skia</ccflag>
                             </ccflags>
