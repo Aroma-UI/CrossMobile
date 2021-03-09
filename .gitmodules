@@ -4,3 +4,12 @@
 [submodule "cmbuild"]
 	path = cmbuild
 	url = https://github.com/Aroma-UI/cmbuild
+[submodule "dependencies/third_party/skia"]
+	path = dependencies/third_party/skia
+	url = https://github.com/google/skia.git
+[submodule "dependencies/third_party/SDL"]
+	path = dependencies/third_party/SDL
+	url = https://github.com/SDL-mirror/SDL.git
+[submodule "dependencies/third_party/avian"]
+	path = dependencies/third_party/avian
+	url = https://github.com/TotalCross/avian.git
